@@ -1,21 +1,37 @@
-'use client'
+"use client";
 
-import { usePlayers } from "@/utils/queries"
+import { Home } from "@/components/Home";
+import { HeaderMain } from "@/components/headerMain";
+import { useState } from "react";
 
 const Page = () => {
+  const [home, setHome] = useState(true);
+  const [player, setPlayer] = useState(false);
+  const [comparison, setComparison] = useState(false);
+  const [postSeason, setPostSeason] = useState(false);
 
-  const players = usePlayers()
+  const activeList = {
+    home,
+    player,
+    comparison,
+    postSeason,
+    set: {
+      setHome,
+      setPlayer,
+      setComparison,
+      setPostSeason
+    },
+  };
 
-  return(
+  return (
     <div>
-      <ul>
-        {players.data?.map(item => (
-          <li>{item.first_name} {item.last_name}</li>
-        ))}
-      </ul>
-      
-    </div>
-  )
-}
+      <HeaderMain activeList={activeList} />
 
-export default Page
+      {home && <Home />}
+
+      {player && <div>Aqui está o player</div>}
+    </div>
+  );
+};
+
+export default Page;
