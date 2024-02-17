@@ -3,6 +3,8 @@
 import { Home } from "@/components/Home";
 import { HeaderMain } from "@/components/headerMain";
 import { useState } from "react";
+import { PlayerLayout } from "@/components/playerLayout"
+import { ComparisonMain } from "@/components/comparisonMain";
 
 const Page = () => {
   const [home, setHome] = useState(true);
@@ -19,17 +21,19 @@ const Page = () => {
       setHome,
       setPlayer,
       setComparison,
-      setPostSeason
+      setPostSeason,
     },
   };
 
   return (
-    <div>
+    <div className="bg-black min-h-lvh">
       <HeaderMain activeList={activeList} />
 
       {home && <Home />}
 
-      {player && <div>Aqui está o player</div>}
+      {player && <PlayerLayout/> }
+
+      {comparison && <ComparisonMain/> }
     </div>
   );
 };
